@@ -102,10 +102,11 @@ I was choosen to use sqlite because it's easier for this purpose and there's bas
 
 A production ready application should never use sqlite
 
-### TODOS
+### TODOS and notes
 * use database transactions/rollback in case of failure when saving a transaction
 * row locking when updating balance to deal with concurrency
 * in case the debit exceeds the balance, the transaction should be rejected
-* implement tests
+* implement more tests, but the main logic is covered
 * implement authentication/authorization
 * dockerize
+* Transaction has a updatedAt because we may have transaction status somehow in the future and probably other kind of updates

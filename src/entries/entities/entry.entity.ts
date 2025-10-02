@@ -1,6 +1,4 @@
-import { Account } from 'src/accounts/entities/account.entity';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { Transaction } from 'src/transactions/entities/transaction.entity';
 
 @Entity('entries')
 export class Entry {
@@ -22,15 +20,14 @@ export class Entry {
   @CreateDateColumn()
   createdAt: Date;
 
-  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
-
   // Relationships
   @ManyToOne('Transaction', 'entries')
   @JoinColumn({ name: 'transactionId' })
-  transaction: Transaction;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  transaction: any; // Using 'any' to avoid circular dependency
 
   @ManyToOne('Account')
   @JoinColumn({ name: 'accountId' })
-  account: Account;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  account: any; // Using 'any' to avoid circular dependency
 }

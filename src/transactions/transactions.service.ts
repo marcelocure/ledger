@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { Transaction } from './entities/transaction.entity';
 import { Entry } from '../entries/entities/entry.entity';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { CreateEntryDto } from 'src/entries/dto/create-entry.dto';
-import { AccountsService } from 'src/accounts/accounts.service';
+import { CreateEntryDto } from '../entries/dto/create-entry.dto';
+import { AccountsService } from '../accounts/accounts.service';
 
 @Injectable()
 export class TransactionsService {
