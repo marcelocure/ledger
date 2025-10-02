@@ -1,6 +1,6 @@
 # Ledger Management API
 
-Adouble-entry bookkeeping API which provides endpoints for managing accounts, transactions, and entries with automatic balance tracking and validation.
+A double-entry bookkeeping API which provides endpoints for managing accounts, transactions, and entries with automatic balance tracking and validation.
 
 ## Features
 
@@ -110,3 +110,4 @@ A production ready application should never use sqlite
 * implement authentication/authorization
 * dockerize
 * Transaction has a updatedAt because we may have transaction status somehow in the future and probably other kind of updates
+* Entry endpoints are not required, I created to make it easier to check entries in a cleaner way, but those could be removed with no business impact
