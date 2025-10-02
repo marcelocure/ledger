@@ -1,12 +1,12 @@
 # Ledger Management API
 
-A comprehensive double-entry bookkeeping system built with NestJS. This API provides endpoints for managing accounts, transactions, and entries with automatic balance tracking and validation.
+Adouble-entry bookkeeping API which provides endpoints for managing accounts, transactions, and entries with automatic balance tracking and validation.
 
 ## Features
 
-- **Account Management**: Create and manage accounts with debit/credit directions
+- **Account Management**: Create and manage accounts with debit/credit directions. Balance only updated within transactions
 - **Transaction Management**: Create transactions with multiple debit and credit entries
-- **Entry Management**: Individual debit and credit entries linked to accounts
+- **Entry Management**: Individual debit and credit entries linked to accounts, created within transactions
 - **Double-Entry Validation**: Ensures debits equal credits for each transaction
 - **Automatic Balance Tracking**: Account balances are automatically updated when transactions are created
 - **Immutable Entries**: Once created, entries cannot be modified
@@ -15,14 +15,13 @@ A comprehensive double-entry bookkeeping system built with NestJS. This API prov
 
 ## Prerequisites
 
-- Node.js v18.19.0 (use `nvm use 18.19.0` to activate)
-- npm (comes with Node.js)
+- Node.js v18.19.0
 
 ## Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:marcelocure/ledger.git
    cd ledger
    ```
 
@@ -73,80 +72,6 @@ A comprehensive double-entry bookkeeping system built with NestJS. This API prov
 - `GET /entries` - Get all entries
 - `GET /entries/:id` - Get entry by ID
 
-## Data Models
-
-### Account
-```typescript
-{
-  id: number;
-  name: string;
-  direction: 'debit' | 'credit';
-  balance: number; // Read-only, automatically calculated
-  createdAt: Date;
-  updatedAt: Date;
-}
-```
-
-### Transaction
-```typescript
-{
-  id: number;
-  description: string;
-  date: Date;
-  entries: Entry[]; // Array of debit and credit entries
-  createdAt: Date;
-  updatedAt: Date;
-}
-```
-
-### Entry
-```typescript
-{
-  id: number;
-  accountId: number;
-  direction: 'debit' | 'credit';
-  value: number;
-  transactionId: number;
-  createdAt: Date;
-  updatedAt: Date;
-}
-```
-
-## Example Usage
-
-### Creating an Account
-```bash
-curl -X POST http://localhost:3000/accounts \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Cash Account",
-    "direction": "debit",
-    "balance": 1000.00
-  }'
-```
-
-### Creating a Transaction
-```bash
-curl -X POST http://localhost:3000/transactions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "description": "Purchase inventory",
-    "date": "2024-01-15",
-    "entries": [
-      {
-        "accountId": 1,
-        "direction": "debit",
-        "value": 500.00
-      },
-      {
-        "accountId": 2,
-        "direction": "credit",
-        "value": 500.00
-      }
-    ]
-  }'
-```
-
 ## Key Features Explained
 
 ### Double-Entry Bookkeeping
@@ -173,14 +98,6 @@ Once created, entries cannot be modified to maintain data integrity and audit tr
 ### Database
 The application uses SQLite with TypeORM. The database file (`database.sqlite`) is created automatically on first run. In development mode, the database schema is synchronized automatically.
 
-## Contributing
+I was choosen to use sqlite because it's easier for this purpose and there's basically no setup at all
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test your changes
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
+A production ready application should never use sqlite

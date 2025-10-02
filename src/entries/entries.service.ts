@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Entry } from './entities/entry.entity';
-import { CreateEntryDto } from './dto/create-entry.dto';
 
 @Injectable()
 export class EntriesService {
@@ -10,11 +9,6 @@ export class EntriesService {
     @InjectRepository(Entry)
     private entriesRepository: Repository<Entry>,
   ) {}
-
-  async create(createEntryDto: CreateEntryDto): Promise<Entry> {
-    const entry = this.entriesRepository.create(createEntryDto);
-    return this.entriesRepository.save(entry);
-  }
 
   async findAll(): Promise<Entry[]> {
     return this.entriesRepository.find({});

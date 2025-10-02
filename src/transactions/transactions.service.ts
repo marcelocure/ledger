@@ -32,7 +32,7 @@ export class TransactionsService {
       })
     );
 
-    // TODO: use database transactions and row locking
+    // TODO: use database transactions/rollback in case of failure and row locking
     // TODO: in case the debit exceeds the balance, the transaction should be rejected
     for (const entry of entryEntities) {
       const account = await this.accountsService.findOne(entry.accountId);
