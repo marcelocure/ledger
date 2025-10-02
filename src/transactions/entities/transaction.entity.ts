@@ -1,3 +1,4 @@
+import { Entry } from 'src/entries/entities/entry.entity';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
 
 @Entity('transactions')
@@ -19,5 +20,5 @@ export class Transaction {
 
   // Relationships
   @OneToMany('Entry', 'transaction', { cascade: true })
-  entries: any[];
+  entries: Entry[];
 }

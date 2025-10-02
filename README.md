@@ -4,7 +4,7 @@ Adouble-entry bookkeeping API which provides endpoints for managing accounts, tr
 
 ## Features
 
-- **Account Management**: Create and manage accounts with debit/credit directions. Balance only updated within transactions
+- **Account Management**: Create and manage accounts with debit/credit directions.
 - **Transaction Management**: Create transactions with multiple debit and credit entries
 - **Entry Management**: Individual debit and credit entries linked to accounts, created within transactions
 - **Double-Entry Validation**: Ensures debits equal credits for each transaction
@@ -101,3 +101,11 @@ The application uses SQLite with TypeORM. The database file (`database.sqlite`) 
 I was choosen to use sqlite because it's easier for this purpose and there's basically no setup at all
 
 A production ready application should never use sqlite
+
+### TODOS
+* use database transactions/rollback in case of failure when saving a transaction
+* row locking when updating balance to deal with concurrency
+* in case the debit exceeds the balance, the transaction should be rejected
+* implement tests
+* implement authentication/authorization
+* dockerize

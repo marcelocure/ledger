@@ -78,10 +78,10 @@ export class TransactionsService {
     const queryBuilder = this.transactionsRepository.createQueryBuilder('transaction')
       .leftJoinAndSelect('transaction.entries', 'entries');
 
-    const [data, total] = await queryBuilder
+    const transactions = await queryBuilder
       .orderBy('transaction.createdAt', 'DESC')
-      .getManyAndCount();
-    return data
+      .getMany();
+    return transactions;
   }
 
   async findOne(id: number): Promise<Transaction> {

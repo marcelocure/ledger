@@ -1,4 +1,6 @@
+import { Account } from 'src/accounts/entities/account.entity';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Transaction } from 'src/transactions/entities/transaction.entity';
 
 @Entity('entries')
 export class Entry {
@@ -26,9 +28,9 @@ export class Entry {
   // Relationships
   @ManyToOne('Transaction', 'entries')
   @JoinColumn({ name: 'transactionId' })
-  transaction: any;
+  transaction: Transaction;
 
   @ManyToOne('Account')
   @JoinColumn({ name: 'accountId' })
-  account: any;
+  account: Account;
 }
